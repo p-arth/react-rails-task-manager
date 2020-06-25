@@ -1,0 +1,15 @@
+
+// color variables
+$yellow: #F5DD16;
+$dark-grey: #7c7c7c;
+$light-grey: #bebebe;
+$red: #ee4525;
+
+
+// navbar style
+.navbar {
+  background-color: $dark-grey;
+  .navbar-brand {
+    color: $yellow !important;
+  }
+}

@@ -25,6 +25,21 @@ $red: #ee4525;
     margin-bottom: 4px;
   }
 
+  .create_task_btn {
+    background-color: $dark-grey;
+    border-color: $dark-grey;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+
+  .remove_tasks_btn {
+    background-color: $red;
+    border-color: $red;
+    font-weight: 500;
+    margin-top: 10px;
+    color: white;
+  }
+
   .card {
     background-color: $dark-grey;
     table {
@@ -35,12 +50,33 @@ $red: #ee4525;
       font-weight: 500;
       margin-bottom: 5px;
 
-      .check{
+      .uncheck {
         color: $yellow;
         font-size: 15px;
+        transition: .2s;
+        :hover {
+          color: $light-grey;
+          transition: .2s;
+        }
       }
+
+      .check {
+        color: $light-grey;
+        font-size: 15px;
+        transition: .2s;
+        :hover {
+          color: $yellow;
+          transition: .2s;
+        }
+      }
+
       .delete{
         color: white;
+        transition: .2s;
+        :hover {
+          color: $light-grey;
+          transition: .2s;
+        }
       }
     }
   }

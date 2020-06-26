@@ -5,6 +5,46 @@ import React, { Component } from 'react';
     import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
     class List extends Component {
+
+        async checkTask(task) {
+            let form = {'task': {'done': 'true'}}
+            await fetch(`http://localhost:3001/tasks/${task.id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    task: { done: true }
+                })
+            })
+            this.props.loadTasks();
+        }
+
+        async uncheckTask(task) {
+            let form = {'task': {'done': 'false'}}
+            await fetch(`http://localhost:3001/tasks/${task.id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    task: { done: false }
+                })
+            })
+            this.props.loadTasks();
+        }
+
+        async deleteTask(task) {
+            if (window.confirm(`Are you sure you want to delete: "${task.title}"`)) {
+                await fetch(`http://localhost:3001/tasks/${task.id}`, {method: 'DELETE'});
+                this.props.loadTasks();
+            }
+        }
+
         render() {
             return (
                 <div>
@@ -19,13 +59,15 @@ import React, { Component } from 'react';
                                                 {
                                                     task.done == false
                                                     ? <a className="check" href="#">
-                                                        <FontAwesomeIcon icon="check-circle" />
+                                                        <FontAwesomeIcon icon="check-circle" onClick={() => this.checkTask(task)} size="lg" />
                                                     </a>
-                                                    : null
+                                                    : <a className="uncheck" href="#">
+                                                        <FontAwesomeIcon icon="check-circle" onClick={() => this.uncheckTask(task)} size="lg" />
+                                                    </a>   
                                                 }
                                             </td>
                                             <td>
-                                                <a className="delete" href="#">
+                                                <a className="delete" href="#" onClick={() => this.deleteTask(task)}>
                                                     <FontAwesomeIcon icon="trash-alt" />
                                                 </a>
                                             </td>

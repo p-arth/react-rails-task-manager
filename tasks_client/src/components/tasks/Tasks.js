@@ -4,6 +4,7 @@ import React, { Component } from 'react';
     import List from './list/List';
     import Button from 'react-bootstrap/Button';
     import CreateTask from './create_tasks/CreateTasks';
+    // import DeleteAllTasks from './delete_tasks/DeleteAllTasks';
 
     class Tasks extends Component {
 
@@ -36,7 +37,7 @@ import React, { Component } from 'react';
                     <Col xs={{ span: 8, offset: 2 }} className="tasks_list">
                         <p className="title">Done</p>
                         <List loadTasks={this.loadTasks} tasks={ this.state.tasks.filter((task) => task.done == true) } />
-                        <Button variant="red" className="float-right remove_tasks_btn" loadTasks={this.loadTasks} >Remove all done tasks</Button>
+                        {/* <DeleteAllTasks loadTasks={this.loadTasks} /> */}
                     </Col>
                 </Row>
             );

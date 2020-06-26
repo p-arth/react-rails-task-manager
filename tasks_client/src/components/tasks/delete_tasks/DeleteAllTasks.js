@@ -1,54 +1,47 @@
-import React, { useState } from "react";
-   import Modal from 'react-bootstrap/Modal';
+import React, { Component } from "react";
    import Button from 'react-bootstrap/Button';
-   import Form from 'react-bootstrap/Form';
    
-   function CreateTask(props) {
-     const [title, setTitle] = useState('');
-     const [show, setShow] = useState('');
-   
-     const handleSubmit = (async () => {
-       await fetch(`http://localhost:3001/tasks`,
-         {
-           method: 'POST',
-           headers: {
-             'Accept': 'application/json',
-             'Content-Type': 'application/json'
-           },
-           body: JSON.stringify({
-             task: { title: title, done: false} 
-           })
-         }
-       )
-       setShow(false)
-       setTitle('')
-       props.loadTasks();
-     });
-   
-     return (
-       <div>
-         <Button onClick={e => setShow(true)} variant="dark" className="float-right create_task_btn">New Task</Button>
-   
-         <Modal show={show || false} onHide={e => setShow(false)}>
-           <Modal.Header closeButton>
-             <Modal.Title>New Task</Modal.Title>
-           </Modal.Header>
-           <Modal.Body>
-             <Form.Control type="email" placeholder="What's your new task?" value={title || ''} onChange={e => setTitle(e.target.value)} />
-           </Modal.Body>
-           <Modal.Footer>
-             <Button variant="secondary" onClick={e => setShow(false)}>
-               Close
-             </Button>
-             <form onSubmit={handleSubmit}>
-               <Button variant="dark" type="submit">
-                 Create
-               </Button>
-             </form>
-           </Modal.Footer>
-         </Modal>
-       </div>
-     );
-   }
+   class DeleteAllTasks extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            tasks: []
+        };
+        this.loadTasks = this.loadTasks.bind(this);
+    }
+
+    async loadTasks() {
+        let response = await fetch('http://localhost:3001/tasks');
+        const tasks = await response.json();
+        this.setState({ tasks: tasks });
+    }
+
+    async deleteAllTasks(task) {
+      if (window.confirm(`Are you sure you want to delete all done tasks?`)) {
+          await fetch(`delete_all_done`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+          },
+            body: JSON().stringify({
+              done: true
+            }) 
+          });
+          this.props.loadTasks();
+      }
+    }
+
+    componentDidMount() {
+        this.loadTasks();
+    }      
+
+    render() {
+      return (
+        {this.props.tasks.map((task) => 
+        <Button variant="red" className="float-right remove_tasks_btn" loadTasks={this.loadTasks} onClick={() => this.deleteAllTasks(task)}>Remove all done tasks</Button>
+        });
+    }
+  }
    
 export default DeleteAllTasks;

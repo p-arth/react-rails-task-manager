@@ -1,7 +1,7 @@
 import React, { Component } from "react";
    import Button from 'react-bootstrap/Button';
    
-   class DeleteAllTasks extends Component {
+  class DeleteAllTasks extends Component {
 
     constructor(props) {
         super(props);
@@ -17,17 +17,9 @@ import React, { Component } from "react";
         this.setState({ tasks: tasks });
     }
 
-    async deleteAllTasks(task) {
+    async deleteAllDoneTasks() {
       if (window.confirm(`Are you sure you want to delete all done tasks?`)) {
-          await fetch(`delete_all_done`, {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-          },
-            body: JSON().stringify({
-              done: true
-            }) 
-          });
+          await fetch(`http://localhost:3001/tasks/`, {method: 'DELETE'});
           this.props.loadTasks();
       }
     }
@@ -38,9 +30,10 @@ import React, { Component } from "react";
 
     render() {
       return (
-        {this.props.tasks.map((task) => 
-        <Button variant="red" className="float-right remove_tasks_btn" loadTasks={this.loadTasks} onClick={() => this.deleteAllTasks(task)}>Remove all done tasks</Button>
-        });
+        <div>
+          <Button variant="red" className="float-right remove_tasks_btn" loadTasks={this.loadTasks} onClick={() => this.deleteAllDoneTasks()}>Remove all done tasks</Button>
+        </div>
+      );
     }
   }
    

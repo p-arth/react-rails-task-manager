@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "cd task_client && yarn install && yarn build && cd ..",
-    "deploy": "cp -a task_client/build/. public/",
+    "build": "cd tasks_client && yarn install && yarn build && cd ..",
+    "deploy": "cp -a tasks_client/build/. public/",
     "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
   },
   "engines": {

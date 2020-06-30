@@ -8,7 +8,7 @@ import React, { useState } from "react";
      const [show, setShow] = useState('');
    
      const handleSubmit = (async () => {
-       await fetch(`http://localhost:3001/tasks`,
+       await fetch(`/tasks`,
          {
            method: 'POST',
            headers: {

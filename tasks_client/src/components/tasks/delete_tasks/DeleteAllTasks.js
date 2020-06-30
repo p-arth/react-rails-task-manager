@@ -12,14 +12,14 @@ import React, { Component } from "react";
     }
 
     async loadTasks() {
-        let response = await fetch('http://localhost:3001/tasks');
+        let response = await fetch('/tasks');
         const tasks = await response.json();
         this.setState({ tasks: tasks });
     }
 
     async deleteAllDoneTasks() {
       if (window.confirm(`Are you sure you want to delete all done tasks?`)) {
-          await fetch(`http://localhost:3001/tasks/`, {method: 'DELETE'});
+          await fetch(`/tasks/`, {method: 'DELETE'});
           this.props.loadTasks();
       }
     }

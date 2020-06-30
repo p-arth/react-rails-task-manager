@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 
         async checkTask(task) {
             let form = {'task': {'done': 'true'}}
-            await fetch(`http://localhost:3001/tasks/${task.id}`,
+            await fetch(`/tasks/${task.id}`,
             {
                 method: 'PUT',
                 headers: {
@@ -24,7 +24,7 @@ import React, { Component } from 'react';
 
         async uncheckTask(task) {
             let form = {'task': {'done': 'false'}}
-            await fetch(`http://localhost:3001/tasks/${task.id}`,
+            await fetch(`/tasks/${task.id}`,
             {
                 method: 'PUT',
                 headers: {
@@ -40,7 +40,7 @@ import React, { Component } from 'react';
 
         async deleteTask(task) {
             if (window.confirm(`Are you sure you want to delete: "${task.title}"`)) {
-                await fetch(`http://localhost:3001/tasks/${task.id}`, {method: 'DELETE'});
+                await fetch(`/tasks/${task.id}`, {method: 'DELETE'});
                 this.props.loadTasks();
             }
         }

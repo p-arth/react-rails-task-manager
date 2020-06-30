@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from './logo.svg';
     import Navbar from 'react-bootstrap/Navbar';
     import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -9,7 +10,7 @@ import React, { Component } from 'react';
                 <div>
                     <Navbar>
                         <Navbar.Brand>
-                            <FontAwesomeIcon icon="check-circle" size="lg"/> Task Finisher
+                        <img src={logo} class="AppLogo" alt="logo" />   The Task Manager
                         </Navbar.Brand>
                     </Navbar>
                 </div>

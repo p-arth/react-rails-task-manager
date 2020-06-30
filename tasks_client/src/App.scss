@@ -1,16 +1,50 @@
+// font styles
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+
+// body rules
+body {
+  font-family: 'Open Sans', sans-serif;;
+}
+
 
 // color variables
 $yellow: #F5DD16;
 $dark-grey: #7c7c7c;
 $light-grey: #bebebe;
 $red: #ee4525;
+$bright-blue: #60DAFB;
 
 
 // navbar style
 .navbar {
   background-color: $dark-grey;
   .navbar-brand {
-    color: $yellow !important;
+    color: $bright-blue !important;
+    margin: auto;
+  }
+}
+
+.AppLogo {
+  height: 45px;
+  margin-right: -10px;
+  margin-top: -5px;
+  pointer-events: none;
+  // margin-top: 25px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .AppLogo {
+    animation: AppLogoSpin infinite 20s linear;
+  }
+}
+
+@keyframes AppLogoSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -51,7 +85,7 @@ $red: #ee4525;
       margin-bottom: 5px;
 
       .uncheck {
-        color: $yellow;
+        color: $bright-blue;
         font-size: 15px;
         transition: .2s;
         :hover {
@@ -65,7 +99,7 @@ $red: #ee4525;
         font-size: 15px;
         transition: .2s;
         :hover {
-          color: $yellow;
+          color: $bright-blue;
           transition: .2s;
         }
       }

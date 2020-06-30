@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from './logo.svg';
 
 import Container from 'react-bootstrap/Container'
 import './App.scss';
